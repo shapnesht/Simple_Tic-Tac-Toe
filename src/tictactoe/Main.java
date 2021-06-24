@@ -1,21 +1,27 @@
 package tictactoe;
 import java.util.Scanner;
 
+// In this prject we are creating a XOgame which can be played between 2 players.
+    
+// Main begins
+    
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        
+        // creating and initialising grid with all the elements as '_'
+        
         char[][] arr = new char[3][3];
-        arr[0][0] = '_';
-        arr[0][1] = '_';
-        arr[0][2] = '_';
-        arr[1][0] = '_';
-        arr[1][1] = '_';
-        arr[1][2] = '_';
-        arr[2][0] = '_';
-        arr[2][1] = '_';
-        arr[2][2] = '_';
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                arr[i][j] = '_';
+            }
+        }
         boolean result = true;
         int con = 1;
+        
+        //loop to input, check the input and update the grid after that.
+        
         while (result) {
         System.out.println("---------");
         System.out.println("| " + arr[0][0] + " " + arr[0][1] + " " + arr[0][2] + " |");
@@ -25,11 +31,17 @@ public class Main {
         System.out.println("Enter the coordinates: ");
         boolean bool = true;
         char move;
+            
+        // to change X to O and vice versa after each turn.
+            
         if (con % 2 == 0) {
             move = 'O';
         } else{
             move = 'X';
         }
+            
+        // To take input until valid input is found else print valid rejection reason and ask user to re enter the input (coordinates).
+            
         while (bool) {
                 int a = scanner.nextInt();
                 int b = scanner.nextInt();
@@ -54,6 +66,8 @@ public class Main {
                 }
             }
             
+            // Cases for winning if any one of the following is true one wins.
+            
             int totalX = 0;
             int totalY = 0;
             int row1 = arr[0][0] + arr[0][1] + arr[0][2];
@@ -64,6 +78,9 @@ public class Main {
             int col3 = arr[0][2] + arr[1][2] + arr[2][2];
             int dia1 = arr[0][0] + arr[1][1] + arr[2][2];
             int dia2 = arr[0][2] + arr[1][1] + arr[2][0];
+            
+            // To count number of X an O in the grid at any condition.
+            
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (arr[i][j] == 'X') {
@@ -73,11 +90,18 @@ public class Main {
                     }
                 }
             }
+            
+            // Conditions to check if X wins.
+            
             boolean xWins = (row1 == 264 || row2 == 264 || row3 == 264 ||
             dia1 == 264 || dia2 == 264 ||col1 == 264 || col2 == 264 || col3 == 264);
             
+            // Conditions to check if O wins.
+            
             boolean oWins = (row1 == 237 || row2 == 237 || row3 == 237 || dia1 == 237 || dia2 == 237 ||
             col1 == 237 || col2 == 237 || col3 == 237);
+            
+            // checking the status of the grid.
             
             if (xWins) {
                 System.out.println("---------");
